@@ -1,5 +1,11 @@
 //Variables
-let LIST =[], id =0;
+let LIST , id;
+
+
+//Claasses names
+const CHECK = "fa-check-circle";
+const UNCHECK ="fa-circle-thin";
+const LINE_THROUGH = "lineThrough";
 
 // Select the elements
 const clear = document.querySelector(".clear");
@@ -7,15 +13,35 @@ const dateElement = document.getElementById("date");
 const list = document.getElementById("list");
 const input = document.getElementById("input");
 
-//Claasses names
-const CHECK = "fa-check-circle";
-const UNCHECK ="fa-circle-thin";
-const LINE_THROUGH = "lineThrough";
 
 //Show today Date
 const options = {weekday: "long", month:"short", day:"numeric"}
 const today = new Date();
 dateElement.innerHTML = today.toLocaleDateString("en-US",options);
+
+
+//get Item from local storage
+let data =  localStorage.getItem("TODO");
+
+// check data is empty
+if(data){
+  
+  LIST = JSON.parse(data);
+  id = LIST.length;
+  loadList(LIST);
+
+}else{
+   LIST = [];
+   id = 0;
+}
+
+// load List to Interface
+function loadList(array){
+    array.forEach(function(item){
+        addToDo(item.name,item.id,item.done,item.trash);
+    });
+}
+
 
 //add to do function
 
@@ -54,6 +80,8 @@ document.addEventListener("keyup",function(even){
                done : false,
                trash : false
             });
+
+            localStorage.setItem("TODO", JSON.stringify(LIST));
 
             id++;
         }
@@ -94,4 +122,13 @@ list.addEventListener("click", function(event){
   }else if(elementJob == "delete"){
     removeToDO(element);
    }
+
+   localStorage.setItem("TODO", JSON.stringify(LIST));
+
+});
+
+clear.addEventListener("click",function(event){
+    localStorage.clear();
+    location.reload();
+
 });
