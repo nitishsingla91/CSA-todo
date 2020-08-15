@@ -1,4 +1,4 @@
-const cacheName = 'v2';
+const cacheName = 'v1';
 
 const cacheAssets = [
     'index.html',
@@ -26,4 +26,27 @@ self.addEventListener('install', e => {
 //Call Activated Event
 self.addEventListener('activate', e => {
     console.log('Service Worker : Activated');
+
+    //remove unwanted caches
+    e.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cache => {
+                    if(cache !== cacheName){
+                       console.log('Service Worker: Clearing Old Cache');
+                       return caches.delete(cache);
+                    }
+                })
+            )
+        })
+    );
+
+});
+
+// call fetch event
+self.addEventListener('fetch', e => {
+    console.log('Service Worker : Fetching');
+
+    e.respondWith(fetch(e.request).catch(() => caches.match(e.request)));
+
 });
