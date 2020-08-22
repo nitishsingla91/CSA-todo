@@ -32,23 +32,6 @@ class List extends HTMLElement {
 
   connectedCallback() {
 
-
-    this.todoList.addEventListener("click", function(event){
-        const  element = event.target; 
-        const elementJob = element.attributes.job.value;
-      
-        if(elementJob == "complete"){
-            this.completeToDo(element);
-        }else if(elementJob == "delete"){
-            this.removeToDO(element);
-         }
-      
-         localStorage.setItem("TODO", JSON.stringify(this.LIST));
-      
-      });
-
-    
-
   }
 
   render() {
@@ -67,7 +50,20 @@ class List extends HTMLElement {
         this.id = 0;
       }
 
-
+     
+      this.todoList.addEventListener("click", function(event){
+        const  element = event.target; 
+        const elementJob = element.attributes.job.value;
+      
+        if(elementJob == "complete"){
+            this.completeToDo(element);
+        }else if(elementJob == "delete"){
+            this.removeToDO(element);
+         }
+      
+         localStorage.setItem("TODO", JSON.stringify(this.LIST));
+      
+      });    
       
   }
 
@@ -126,20 +122,18 @@ class List extends HTMLElement {
     this.LIST[element.id].trash = true;
 }
 
-//addItem to List
-
+// target the items created dynamically
 addItem(toDo,id){
    this.addToDo(toDo,id,false,false,this.todoList)
 }
 
-// target the items created dynamically
+// add Item to List
 addToDo(toDo,id,done,trash,list){
 
     if(trash){ return; }
   
     const DONE = done ? CHECK : UNCHECK;
     const LINE = done ? LINE_THROUGH : "";
-
 
     const items =   ` <li class="item">
     <i class="fa ${DONE} co" job="complete" id=${id}> </i>

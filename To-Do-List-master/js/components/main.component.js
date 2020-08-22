@@ -12,6 +12,25 @@ if('serviceWorker' in  navigator){
     });
 }
 
+
+// Select the elements
+const clear = document.querySelector(".clear");
+const dateElement = document.getElementById("date");
+
+
+//Show today Date
+const options = {weekday: "long", month:"short", day:"numeric"}
+const today = new Date();
+dateElement.innerHTML = today.toLocaleDateString("en-US",options);
+
+
+clear.addEventListener("click",function(event){
+    localStorage.clear();
+    location.reload();
+
+});
+
+//Custom Component implementation
 const template = document.createElement('template');
 template.innerHTML = `
 <main class="container">
