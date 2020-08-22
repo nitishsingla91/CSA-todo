@@ -10,7 +10,7 @@ template.innerHTML = `
 `;
 
 class AddToDo extends HTMLElement {
-   input;
+  
     constructor() {
         super();
         this._shadowRoot = this.attachShadow({ 'mode': 'open' });

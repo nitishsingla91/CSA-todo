@@ -13,13 +13,9 @@ const CHECK = "fa-check-circle";
 const UNCHECK ="fa-circle-thin";
 const LINE_THROUGH = "lineThrough";
 
+let LIST;
+let id ;
 class List extends HTMLElement {
-
-    //Variables
- LIST;
-  id ;
-  todoList;
-
 
  constructor() {
     super();

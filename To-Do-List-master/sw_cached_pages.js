@@ -4,7 +4,7 @@ const cacheAssets = [
     'index.html',
     '/css/style.css',
     '/css/font-awesome.css',
-    '/js/main.js',
+    'app.js',
     '/js/component/main.component.js',
    '/js/component/addtodo.component.js',
  '/js/component/list.component.js'
