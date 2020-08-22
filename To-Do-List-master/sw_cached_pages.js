@@ -1,10 +1,13 @@
-const cacheName = 'v1';
+const cacheName = 'v2';
 
 const cacheAssets = [
     'index.html',
     '/css/style.css',
     '/css/font-awesome.css',
-    '/js/app.js'
+    '/js/main.js',
+    '/js/component/main.component.js',
+   '/js/component/addtodo.component.js',
+ '/js/component/list.component.js'
 ]
 
 //Call Install Event
