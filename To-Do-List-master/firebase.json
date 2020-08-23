@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "To-Do-List-master",
+    "public": "/",
     "ignore": [
       "firebase.json",
       "**/.*",
