@@ -1,5 +1,7 @@
+
 const template = document.createElement('template');
 template.innerHTML = `
+<link rel="stylesheet" href="css/font-awesome.css">
 <link rel="stylesheet"  href="css/style.css" >
 <form ref="form">
     <div class="add-to-do">
